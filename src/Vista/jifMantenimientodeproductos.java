@@ -544,7 +544,7 @@ public class jifMantenimientodeproductos extends javax.swing.JInternalFrame {
                     chbDisponible.doClick();
                 }
                 jdDatosproductos.setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos/editar.png")).getImage());
-                jdDatosproductos.setSize(440, 280);
+                jdDatosproductos.setSize(440, 320);
                 jdDatosproductos.setLocationRelativeTo(null);
                 jdDatosproductos.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jdDatosproductos.setVisible(true);
@@ -684,6 +684,7 @@ public class jifMantenimientodeproductos extends javax.swing.JInternalFrame {
 
         String secuencia;
         String serie;
+        
         int ticket = 0;
 
         try {
@@ -695,13 +696,17 @@ public class jifMantenimientodeproductos extends javax.swing.JInternalFrame {
             ps = conn.prepareCall("{ call jdDatosproductos_BUSCAR_CODIGO_PRODUCTOS (?) }");
 
             // Parametros
-            ps.setString(1, "%" + cbCategoria.getSelectedItem().toString() + "%");
-
+            ps.setString(1, cbCategoria.getSelectedItem().toString());
+            
+            System.out.println(cbCategoria.getSelectedItem().toString());
+            
             rs = ps.executeQuery();
 
             if (rs.next()) {
+                
                 serie = rs.getString(1); // Serie de la categoria.
                 secuencia = rs.getString(2); // Secuencia del codigo.
+                
                 if (secuencia == null) {
                     ticket = 0;
                 } else {

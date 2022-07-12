@@ -54,7 +54,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
     
     private void Configuracionventana(){
         //this.setSize(895,650);
-        this.setSize(950,720);
+        this.setSize(1330,970);
     }
     
     private void Configuraciontabla (){
@@ -124,6 +124,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         Buscar_NFC();
         this.usr = usr;
     }
+  
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,6 +137,28 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         tbProductos = new javax.swing.JTable();
         tfBuscar = new javax.swing.JTextField();
         btAgregar = new javax.swing.JButton();
+        jplContenedor = new javax.swing.JPanel();
+        jpDatosCliente = new javax.swing.JPanel();
+        lbCliente = new javax.swing.JLabel();
+        tfCliente = new javax.swing.JTextField();
+        lbDireccion = new javax.swing.JLabel();
+        tfDireccion = new javax.swing.JTextField();
+        lbTelefono = new javax.swing.JLabel();
+        tfTelefono = new javax.swing.JTextField();
+        cbDocumento = new javax.swing.JComboBox<>();
+        tfBusqueda = new javax.swing.JTextField();
+        btBuscar = new javax.swing.JButton();
+        tfCodcliente = new javax.swing.JTextField();
+        jpDatosfactura = new javax.swing.JPanel();
+        lbTipodefactura = new javax.swing.JLabel();
+        lbFecha = new javax.swing.JLabel();
+        tfFecha = new javax.swing.JTextField();
+        lbNofactura = new javax.swing.JLabel();
+        tfNofactura = new javax.swing.JTextField();
+        lbNCF = new javax.swing.JLabel();
+        tfNCF = new javax.swing.JTextField();
+        lbTipocomprobante = new javax.swing.JLabel();
+        cbComprobante = new javax.swing.JComboBox<>();
         plFacturar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbFacturacion = new javax.swing.JTable();
@@ -164,27 +187,6 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taComentario = new javax.swing.JTextArea();
         btLimpiar = new javax.swing.JButton();
-        jpDatosCliente = new javax.swing.JPanel();
-        lbCliente = new javax.swing.JLabel();
-        tfCliente = new javax.swing.JTextField();
-        lbDireccion = new javax.swing.JLabel();
-        tfDireccion = new javax.swing.JTextField();
-        lbTelefono = new javax.swing.JLabel();
-        tfTelefono = new javax.swing.JTextField();
-        cbDocumento = new javax.swing.JComboBox<>();
-        tfBusqueda = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
-        tfCodcliente = new javax.swing.JTextField();
-        jpDatosfactura = new javax.swing.JPanel();
-        lbTipodefactura = new javax.swing.JLabel();
-        lbFecha = new javax.swing.JLabel();
-        tfFecha = new javax.swing.JTextField();
-        lbNofactura = new javax.swing.JLabel();
-        tfNofactura = new javax.swing.JTextField();
-        lbNCF = new javax.swing.JLabel();
-        tfNCF = new javax.swing.JTextField();
-        lbTipocomprobante = new javax.swing.JLabel();
-        cbComprobante = new javax.swing.JComboBox<>();
 
         jdProductos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jdProductos.setTitle("Productos");
@@ -288,16 +290,175 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setTitle("Facturación de Artículos");
+        setFont(new java.awt.Font("Roboto Black", 1, 10)); // NOI18N
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosGraficos/facturar.png"))); // NOI18N
         setMinimumSize(new java.awt.Dimension(950, 660));
         setPreferredSize(new java.awt.Dimension(950, 660));
 
+        jplContenedor.setBackground(new java.awt.Color(252, 250, 250));
+        jplContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpDatosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpDatosCliente.setToolTipText("Datos del Cliente");
+        jpDatosCliente.setName(""); // NOI18N
+        jpDatosCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbCliente.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbCliente.setForeground(new java.awt.Color(118, 113, 113));
+        lbCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbCliente.setText("Cliente:");
+        jpDatosCliente.add(lbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 115, 40));
+
+        tfCliente.setEditable(false);
+        tfCliente.setBackground(new java.awt.Color(214, 214, 214));
+        tfCliente.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfCliente.setBorder(null);
+        jpDatosCliente.add(tfCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 60, 545, 40));
+
+        lbDireccion.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbDireccion.setForeground(new java.awt.Color(118, 113, 113));
+        lbDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbDireccion.setText("Dirección:");
+        jpDatosCliente.add(lbDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 115, 40));
+
+        tfDireccion.setEditable(false);
+        tfDireccion.setBackground(new java.awt.Color(214, 214, 214));
+        tfDireccion.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfDireccion.setBorder(null);
+        jpDatosCliente.add(tfDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 110, 545, 40));
+
+        lbTelefono.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbTelefono.setForeground(new java.awt.Color(118, 113, 113));
+        lbTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbTelefono.setText("Teléfono:");
+        jpDatosCliente.add(lbTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 115, 40));
+
+        tfTelefono.setEditable(false);
+        tfTelefono.setBackground(new java.awt.Color(214, 214, 214));
+        tfTelefono.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfTelefono.setBorder(null);
+        jpDatosCliente.add(tfTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 160, 195, 40));
+
+        cbDocumento.setBackground(new java.awt.Color(51, 153, 255));
+        cbDocumento.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        cbDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Cédula", "Pasaporte", "RNC" }));
+        cbDocumento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDocumentoActionPerformed(evt);
+            }
+        });
+        jpDatosCliente.add(cbDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 175, 40));
+
+        tfBusqueda.setBackground(new java.awt.Color(214, 214, 214));
+        tfBusqueda.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfBusqueda.setToolTipText("");
+        tfBusqueda.setBorder(null);
+        tfBusqueda.setEnabled(false);
+        tfBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfBusquedaKeyPressed(evt);
+            }
+        });
+        jpDatosCliente.add(tfBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 10, 175, 40));
+
+        btBuscar.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        btBuscar.setText("Buscar");
+        btBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btBuscar.setOpaque(true);
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
+        jpDatosCliente.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 150, 40));
+
+        tfCodcliente.setBackground(new java.awt.Color(214, 214, 214));
+        tfCodcliente.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfCodcliente.setBorder(null);
+        tfCodcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCodclienteKeyPressed(evt);
+            }
+        });
+        jpDatosCliente.add(tfCodcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 200, 40));
+
+        jplContenedor.add(jpDatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 750, 210));
+
+        jpDatosfactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbTipodefactura.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        lbTipodefactura.setText("Factura de consumo");
+        jpDatosfactura.add(lbTipodefactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 40));
+
+        lbFecha.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbFecha.setForeground(new java.awt.Color(118, 113, 113));
+        lbFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbFecha.setText("Fecha:");
+        jpDatosfactura.add(lbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 150, 40));
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date now = new java.util.Date();
+        this.tfFecha.setText(dateFormat.format(now));
+        tfFecha.setEditable(false);
+        tfFecha.setBackground(new java.awt.Color(214, 214, 214));
+        tfFecha.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfFecha.setBorder(null);
+        jpDatosfactura.add(tfFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 200, 40));
+
+        lbNofactura.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbNofactura.setForeground(new java.awt.Color(118, 113, 113));
+        lbNofactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbNofactura.setText("No. Factura:");
+        jpDatosfactura.add(lbNofactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 150, 40));
+
+        tfNofactura.setEditable(false);
+        tfNofactura.setBackground(new java.awt.Color(214, 214, 214));
+        tfNofactura.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfNofactura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfNofactura.setBorder(null);
+        jpDatosfactura.add(tfNofactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 200, 40));
+
+        lbNCF.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbNCF.setForeground(new java.awt.Color(118, 113, 113));
+        lbNCF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbNCF.setText("NCF:");
+        jpDatosfactura.add(lbNCF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, 40));
+
+        tfNCF.setEditable(false);
+        tfNCF.setBackground(new java.awt.Color(214, 214, 214));
+        tfNCF.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
+        tfNCF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfNCF.setBorder(null);
+        jpDatosfactura.add(tfNCF, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 200, 40));
+
+        lbTipocomprobante.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbTipocomprobante.setForeground(new java.awt.Color(118, 113, 113));
+        lbTipocomprobante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbTipocomprobante.setText("Compobante:");
+        jpDatosfactura.add(lbTipocomprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 150, 40));
+
+        cbComprobante.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        cbComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor Fiscal", "Consumo", "Nota Crédito", "Reg. Especial", "Gubernamental", "Exportaciones" }));
+        cbComprobante.setSelectedIndex(1);
+        cbComprobante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbComprobante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbComprobanteActionPerformed(evt);
+            }
+        });
+        jpDatosfactura.add(cbComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 200, 40));
+
+        jplContenedor.add(jpDatosfactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 450, 260));
+
         plFacturar.setToolTipText("");
         plFacturar.setName(""); // NOI18N
         plFacturar.setPreferredSize(new java.awt.Dimension(880, 378));
+        plFacturar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbFacturacion.setAutoCreateRowSorter(true);
-        tbFacturacion.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        tbFacturacion.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tbFacturacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -338,27 +499,40 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbFacturacion);
 
-        lbVenta.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        plFacturar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 1250, 250));
+
+        lbVenta.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbVenta.setForeground(new java.awt.Color(118, 113, 113));
+        lbVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbVenta.setText("Venta:");
+        plFacturar.add(lbVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 150, 40));
 
-        lbModopago.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbModopago.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbModopago.setForeground(new java.awt.Color(118, 113, 113));
+        lbModopago.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbModopago.setText("Modo de pago:");
+        plFacturar.add(lbModopago, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 370, 175, 40));
 
-        lbPagado.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbPagado.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbPagado.setForeground(new java.awt.Color(118, 113, 113));
+        lbPagado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbPagado.setText("Pagado:");
+        plFacturar.add(lbPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 150, 40));
 
         cbVenta.setBackground(new java.awt.Color(217, 217, 217));
-        cbVenta.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 16)); // NOI18N
+        cbVenta.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         cbVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Crédito" }));
+        cbVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        plFacturar.add(cbVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 200, 40));
 
-        cbModopago.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 16)); // NOI18N
+        cbModopago.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         cbModopago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta", "Cheque", "Transferencia", "Nota crédito" }));
+        cbModopago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        plFacturar.add(cbModopago, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 200, 40));
 
         tfPagado.setEditable(false);
-        tfPagado.setFont(new java.awt.Font("Browallia New", 0, 16)); // NOI18N
+        tfPagado.setBackground(new java.awt.Color(214, 214, 214));
+        tfPagado.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfPagado.setText("RD$0.00");
         tfPagado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -373,427 +547,142 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                 tfPagadoKeyPressed(evt);
             }
         });
+        plFacturar.add(tfPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, 200, 40));
 
-        lbSubtotal.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbSubtotal.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbSubtotal.setForeground(new java.awt.Color(118, 113, 113));
+        lbSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbSubtotal.setText("Subtotal:");
+        plFacturar.add(lbSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 320, 150, 40));
 
-        lbITBIS.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbITBIS.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbITBIS.setForeground(new java.awt.Color(118, 113, 113));
+        lbITBIS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbITBIS.setText("ITBIS:");
+        plFacturar.add(lbITBIS, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 150, 40));
 
         tfSubtotal.setEditable(false);
-        tfSubtotal.setFont(new java.awt.Font("Browallia New", 0, 16)); // NOI18N
+        tfSubtotal.setBackground(new java.awt.Color(214, 214, 214));
+        tfSubtotal.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfSubtotal.setText("RD$0.00");
+        plFacturar.add(tfSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 320, 200, 40));
 
         tfITBIS.setEditable(false);
-        tfITBIS.setFont(new java.awt.Font("Browallia New", 0, 16)); // NOI18N
+        tfITBIS.setBackground(new java.awt.Color(214, 214, 214));
+        tfITBIS.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfITBIS.setText("RD$0.00");
+        plFacturar.add(tfITBIS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 420, 200, 40));
 
-        lbDescto.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbDescto.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbDescto.setForeground(new java.awt.Color(118, 113, 113));
+        lbDescto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbDescto.setText("Descto.:");
+        plFacturar.add(lbDescto, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 370, 150, 40));
 
         tfDescto.setEditable(false);
-        tfDescto.setFont(new java.awt.Font("Browallia New", 0, 16)); // NOI18N
+        tfDescto.setBackground(new java.awt.Color(214, 214, 214));
+        tfDescto.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfDescto.setText("RD$0.00");
+        plFacturar.add(tfDescto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 370, 200, 40));
 
-        lbTotal.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbTotal.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(118, 113, 113));
+        lbTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbTotal.setText("Total:");
+        plFacturar.add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 470, 150, 40));
 
         tfTotal.setEditable(false);
-        tfTotal.setFont(new java.awt.Font("Browallia New", 0, 16)); // NOI18N
+        tfTotal.setBackground(new java.awt.Color(214, 214, 214));
+        tfTotal.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfTotal.setText("RD$0.00");
+        plFacturar.add(tfTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 470, 200, 40));
 
-        btCerrar.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        btCerrar.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         btCerrar.setText("Cerrar");
+        btCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCerrarActionPerformed(evt);
             }
         });
+        plFacturar.add(btCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 580, 200, 40));
 
-        btFacturar.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        btFacturar.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         btFacturar.setText("Facturar");
+        btFacturar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFacturarActionPerformed(evt);
             }
         });
+        plFacturar.add(btFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 580, 200, 40));
 
-        lbNota.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbNota.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lbNota.setForeground(new java.awt.Color(118, 113, 113));
+        lbNota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbNota.setText("Estatus");
+        plFacturar.add(lbNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 150, 40));
 
         btGenerar.setVisible(false);
-        btGenerar.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        btGenerar.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         btGenerar.setText("Generar");
+        btGenerar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btGenerarActionPerformed(evt);
             }
         });
+        plFacturar.add(btGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 580, 200, 40));
 
         lbNota.setVisible(false);
-        lbCodigo.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbCodigo.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbCodigo.setForeground(new java.awt.Color(118, 113, 113));
+        lbCodigo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbCodigo.setText("Código art.:");
+        lbCodigo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        plFacturar.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 40));
 
-        tfCodigo.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        tfCodigo.setEditable(false);
+        tfCodigo.setBackground(new java.awt.Color(214, 214, 214));
+        tfCodigo.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfCodigo.setToolTipText("Para hacer una busqueda por descripción deje la casilla vacía y presione la telca F2.");
         tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfCodigoKeyPressed(evt);
             }
         });
+        plFacturar.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 150, 40));
 
-        chbPreventa.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        chbPreventa.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         chbPreventa.setForeground(new java.awt.Color(118, 113, 113));
         chbPreventa.setText("Pre-Venta");
+        plFacturar.add(chbPreventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 200, 40));
 
-        lbComentario.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbComentario.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbComentario.setForeground(new java.awt.Color(118, 113, 113));
         lbComentario.setText("Comentario:");
+        plFacturar.add(lbComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 150, 40));
 
+        taComentario.setBackground(new java.awt.Color(214, 214, 214));
         taComentario.setColumns(20);
-        taComentario.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        taComentario.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         taComentario.setRows(5);
         jScrollPane2.setViewportView(taComentario);
 
+        plFacturar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 400, 250));
+
         btLimpiar.setVisible(false);
-        btLimpiar.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        btLimpiar.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         btLimpiar.setText("Limpiar");
+        btLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpiarActionPerformed(evt);
             }
         });
+        plFacturar.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 580, 200, 40));
 
-        javax.swing.GroupLayout plFacturarLayout = new javax.swing.GroupLayout(plFacturar);
-        plFacturar.setLayout(plFacturarLayout);
-        plFacturarLayout.setHorizontalGroup(
-            plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plFacturarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plFacturarLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(plFacturarLayout.createSequentialGroup()
-                        .addComponent(lbCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(chbPreventa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbNota)
-                        .addGap(185, 185, 185))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                        .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btLimpiar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btGenerar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btFacturar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCerrar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbComentario)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
-                                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbVenta)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbPagado)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbModopago)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbModopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(25, 25, 25)
-                                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbSubtotal)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbDescto)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfDescto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbITBIS)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfITBIS, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                                        .addComponent(lbTotal)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
-        );
-        plFacturarLayout.setVerticalGroup(
-            plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plFacturarLayout.createSequentialGroup()
-                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plFacturarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(lbCodigo)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chbPreventa))
-                        .addGap(12, 12, 12))
-                    .addGroup(plFacturarLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lbNota)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbVenta)
-                    .addComponent(tfSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSubtotal)
-                    .addComponent(lbComentario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plFacturarLayout.createSequentialGroup()
-                        .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbModopago)
-                            .addComponent(cbModopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfDescto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbDescto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbPagado)
-                            .addComponent(tfPagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfITBIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbITBIS))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbTotal)
-                            .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(plFacturarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btGenerar)
-                    .addComponent(btFacturar)
-                    .addComponent(btCerrar)
-                    .addComponent(btLimpiar)))
-        );
-
-        jpDatosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jpDatosCliente.setToolTipText("Datos del Cliente");
-        jpDatosCliente.setName(""); // NOI18N
-
-        lbCliente.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbCliente.setForeground(new java.awt.Color(118, 113, 113));
-        lbCliente.setText("Cliente:");
-
-        tfCliente.setEditable(false);
-        tfCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfCliente.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-
-        lbDireccion.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbDireccion.setForeground(new java.awt.Color(118, 113, 113));
-        lbDireccion.setText("Dirección:");
-
-        tfDireccion.setEditable(false);
-        tfDireccion.setBackground(new java.awt.Color(255, 255, 255));
-        tfDireccion.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-
-        lbTelefono.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbTelefono.setForeground(new java.awt.Color(118, 113, 113));
-        lbTelefono.setText("Teléfono:");
-
-        tfTelefono.setEditable(false);
-        tfTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefono.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-
-        cbDocumento.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 16)); // NOI18N
-        cbDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Cédula", "Pasaporte", "RNC" }));
-        cbDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbDocumentoActionPerformed(evt);
-            }
-        });
-
-        tfBusqueda.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        tfBusqueda.setEnabled(false);
-        tfBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfBusquedaKeyPressed(evt);
-            }
-        });
-
-        btBuscar.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 16)); // NOI18N
-        btBuscar.setText("Buscar");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
-            }
-        });
-
-        tfCodcliente.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        tfCodcliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfCodclienteKeyPressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpDatosClienteLayout = new javax.swing.GroupLayout(jpDatosCliente);
-        jpDatosCliente.setLayout(jpDatosClienteLayout);
-        jpDatosClienteLayout.setHorizontalGroup(
-            jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                        .addComponent(cbDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCodcliente))
-                    .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                        .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                                    .addComponent(lbCliente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                                    .addComponent(lbDireccion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfDireccion)))
-                            .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                                .addComponent(lbTelefono)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jpDatosClienteLayout.setVerticalGroup(
-            jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfCodcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar)
-                    .addComponent(tfBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lbCliente)
-                    .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfDireccion)
-                    .addComponent(lbDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        lbTipodefactura.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 36)); // NOI18N
-        lbTipodefactura.setText("Factura de consumo");
-
-        lbFecha.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbFecha.setForeground(new java.awt.Color(118, 113, 113));
-        lbFecha.setText("Fecha:");
-
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date now = new java.util.Date();
-        this.tfFecha.setText(dateFormat.format(now));
-        tfFecha.setEditable(false);
-        tfFecha.setFont(new java.awt.Font("Browallia New", 1, 16)); // NOI18N
-        tfFecha.setBorder(null);
-
-        lbNofactura.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbNofactura.setForeground(new java.awt.Color(118, 113, 113));
-        lbNofactura.setText("No. Factura:");
-
-        tfNofactura.setEditable(false);
-        tfNofactura.setFont(new java.awt.Font("Browallia New", 1, 16)); // NOI18N
-        tfNofactura.setBorder(null);
-
-        lbNCF.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbNCF.setForeground(new java.awt.Color(118, 113, 113));
-        lbNCF.setText("NCF:");
-
-        tfNCF.setEditable(false);
-        tfNCF.setFont(new java.awt.Font("Browallia New", 1, 16)); // NOI18N
-        tfNCF.setBorder(null);
-
-        lbTipocomprobante.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        lbTipocomprobante.setForeground(new java.awt.Color(118, 113, 113));
-        lbTipocomprobante.setText("Compobante:");
-
-        cbComprobante.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 16)); // NOI18N
-        cbComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor Fiscal", "Consumo", "Nota Crédito", "Reg. Especial", "Gubernamental", "Exportaciones" }));
-        cbComprobante.setSelectedIndex(1);
-        cbComprobante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbComprobanteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpDatosfacturaLayout = new javax.swing.GroupLayout(jpDatosfactura);
-        jpDatosfactura.setLayout(jpDatosfacturaLayout);
-        jpDatosfacturaLayout.setHorizontalGroup(
-            jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosfacturaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTipodefactura, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosfacturaLayout.createSequentialGroup()
-                        .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbNCF)
-                            .addComponent(lbFecha)
-                            .addComponent(lbTipocomprobante)
-                            .addComponent(lbNofactura))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbComprobante, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfNCF, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfFecha, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfNofactura))))
-                .addContainerGap())
-        );
-        jpDatosfacturaLayout.setVerticalGroup(
-            jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosfacturaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbTipodefactura)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDatosfacturaLayout.createSequentialGroup()
-                        .addComponent(tfNCF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpDatosfacturaLayout.createSequentialGroup()
-                        .addComponent(lbNCF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbFecha)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNofactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNofactura))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTipocomprobante)
-                    .addComponent(cbComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jplContenedor.add(plFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 1270, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -801,24 +690,12 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(plFacturar, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpDatosfactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jplContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(2365, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpDatosfactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(plFacturar, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jplContenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1479,27 +1356,27 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         switch (cbComprobante.getSelectedIndex()) {
             case 0:
                 lbTipodefactura.setText("Factura de Crédito Fiscal");
-                lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
                 break;
             case 1:
                 lbTipodefactura.setText("Factura de Consumo");
-                lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
                 break;
             case 2:
                 lbTipodefactura.setText("Nota de Crédito");
-                lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
                 break;
             case 3:
                 lbTipodefactura.setText("Regímenes Especiales");
-                lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
                 break;
             case 4:
                 lbTipodefactura.setText("Factura Gubernamental");
-                lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font("Tw Cen MT Condensed", 1, 36));
                 break;
             case 5:
                 lbTipodefactura.setText("Comprobante Exportación");
-                lbTipodefactura.setFont(new Font ("Tw Cen MT Condensed", 1, 36));
+                //lbTipodefactura.setFont(new Font ("Tw Cen MT Condensed", 1, 36));
                 break;
         }
         
@@ -1970,6 +1847,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
     private javax.swing.JDialog jdProductos;
     private javax.swing.JPanel jpDatosCliente;
     private javax.swing.JPanel jpDatosfactura;
+    private javax.swing.JPanel jplContenedor;
     private javax.swing.JLabel lbCliente;
     private javax.swing.JLabel lbCodigo;
     protected javax.swing.JLabel lbComentario;
