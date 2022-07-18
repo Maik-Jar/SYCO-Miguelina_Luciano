@@ -61,15 +61,15 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         //Asignación de tamaño a las celdas de cada columna.
         tcmtbFacturacion = tbFacturacion.getColumnModel();
         tcmtbProductos = tbProductos.getColumnModel();
-        tcmtbFacturacion.getColumn(0).setPreferredWidth(33);
-        tcmtbFacturacion.getColumn(1).setPreferredWidth(50);
-        tcmtbFacturacion.getColumn(2).setPreferredWidth(240);
-        tcmtbFacturacion.getColumn(3).setPreferredWidth(100);
-        tcmtbFacturacion.getColumn(4).setPreferredWidth(40);
-        tcmtbFacturacion.getColumn(5).setPreferredWidth(90);
-        tcmtbFacturacion.getColumn(6).setPreferredWidth(90);
-        tcmtbFacturacion.getColumn(7).setPreferredWidth(90);
-        tcmtbFacturacion.getColumn(8).setPreferredWidth(90);
+        tcmtbFacturacion.getColumn(0).setPreferredWidth(33); // No.
+        tcmtbFacturacion.getColumn(1).setPreferredWidth(70); // Codigo
+        tcmtbFacturacion.getColumn(2).setPreferredWidth(404); // Descripcion
+        tcmtbFacturacion.getColumn(3).setPreferredWidth(140); // Precion Und
+        tcmtbFacturacion.getColumn(4).setPreferredWidth(50); // Cantidad
+        tcmtbFacturacion.getColumn(5).setPreferredWidth(140); // Precio
+        tcmtbFacturacion.getColumn(6).setPreferredWidth(140); // Descuento
+        tcmtbFacturacion.getColumn(7).setPreferredWidth(100);
+        tcmtbFacturacion.getColumn(8).setPreferredWidth(140);
         tcmtbFacturacion.getColumn(9).setPreferredWidth(33);
         tcmtbProductos.getColumn(0).setPreferredWidth(60);
         tcmtbProductos.getColumn(1).setPreferredWidth(250);
@@ -295,9 +295,10 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(950, 660));
         setPreferredSize(new java.awt.Dimension(950, 660));
 
-        jplContenedor.setBackground(new java.awt.Color(252, 250, 250));
+        jplContenedor.setBackground(new java.awt.Color(245, 245, 245));
         jplContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jpDatosCliente.setBackground(new java.awt.Color(245, 245, 245));
         jpDatosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpDatosCliente.setToolTipText("Datos del Cliente");
         jpDatosCliente.setName(""); // NOI18N
@@ -385,6 +386,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
         jplContenedor.add(jpDatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 750, 210));
 
+        jpDatosfactura.setBackground(new java.awt.Color(245, 245, 245));
         jpDatosfactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbTipodefactura.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
@@ -452,6 +454,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
         jplContenedor.add(jpDatosfactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 450, 260));
 
+        plFacturar.setBackground(new java.awt.Color(245, 245, 245));
         plFacturar.setToolTipText("");
         plFacturar.setName(""); // NOI18N
         plFacturar.setPreferredSize(new java.awt.Dimension(880, 378));
@@ -474,7 +477,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, true, false, false, false
+                false, false, true, true, true, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -486,7 +489,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
             }
         });
         tbFacturacion.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tbFacturacion.setRowHeight(25);
+        tbFacturacion.setRowHeight(40);
         tbFacturacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbFacturacionMouseClicked(evt);
@@ -642,7 +645,6 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         lbCodigo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         plFacturar.add(lbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 40));
 
-        tfCodigo.setEditable(false);
         tfCodigo.setBackground(new java.awt.Color(214, 214, 214));
         tfCodigo.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfCodigo.setToolTipText("Para hacer una busqueda por descripción deje la casilla vacía y presione la telca F2.");
@@ -655,7 +657,8 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
         chbPreventa.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         chbPreventa.setForeground(new java.awt.Color(118, 113, 113));
-        chbPreventa.setText("Pre-Venta");
+        chbPreventa.setSelected(true);
+        chbPreventa.setText("Servicio");
         plFacturar.add(chbPreventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 200, 40));
 
         lbComentario.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -691,7 +694,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jplContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2365, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

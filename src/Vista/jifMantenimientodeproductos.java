@@ -476,7 +476,9 @@ public class jifMantenimientodeproductos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(jdDatosproductos, "Cantidad*: Este campo solo admite números.", "INFORMACIÓN", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-
+                
+                Codigo_producto();
+                
                 // Conexión a la base de datos.
                 Connection conn = con.getConnection();
 
@@ -698,21 +700,19 @@ public class jifMantenimientodeproductos extends javax.swing.JInternalFrame {
             // Parametros
             ps.setString(1, cbCategoria.getSelectedItem().toString());
             
-            System.out.println(cbCategoria.getSelectedItem().toString());
-            
             rs = ps.executeQuery();
 
             if (rs.next()) {
                 
-                serie = rs.getString(1); // Serie de la categoria.
-                secuencia = rs.getString(2); // Secuencia del codigo.
+                serie = rs.getString("serie"); // Serie de la categoria.
+                secuencia = rs.getString("secuencia"); // Secuencia del codigo.
                 
                 if (secuencia == null) {
                     ticket = 0;
                 } else {
                     ticket = Integer.parseInt(secuencia.replaceAll("[^\\d.]", ""));
                 }
-                ticket += 1;
+                    //ticket += 1;
                     tfCodigo.setText(serie + String.valueOf(ticket));
             }
 

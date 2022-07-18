@@ -20,7 +20,7 @@ public class Reportes {
     public void Factura (ArrayList list) {
        
         JasperReport reporte = null;
-        String path = "C:\\Program Files\\SYCO\\Reportes\\FacturaMiguelinaLuciano.jasper";
+        String path = "C:\\Program Files\\SYCO\\Reportes\\FacturaImpresosNathalia.jasper";
         //String path = "C:\\Reportes\\FacturaMiguelinaLuciano.jasper";
         
         try {
@@ -41,7 +41,7 @@ public class Reportes {
     public void Rep_facturacion (ArrayList list) {
 
         JasperReport reporte = null;
-        String path = "C:\\Program Files\\SYCO\\Reportes\\Rep_facturacionMiguelinaLuciano.jasper";
+        String path = "C:\\Program Files\\SYCO\\Reportes\\Rep_facturacionImpresosNathalia.jasper";
         //String path = "C:\\Reportes\\Rep_facturacionMiguelinaLuciano.jasper";
         
         try {
@@ -61,7 +61,7 @@ public class Reportes {
     public void Cotizacion(ArrayList list) {
         
         JasperReport reporte = null;
-        String path = "C:\\Program Files\\SYCO\\Reportes\\CotizacionMiguelinaLuciano.jasper";
+        String path = "C:\\Program Files\\SYCO\\Reportes\\CotizacionImpresosNathalia.jasper";
         //String path = "C:\\Reportes\\CotizacionMiguelinaLuciano.jasper";
         
         try {
@@ -81,7 +81,7 @@ public class Reportes {
     public void Listadodeprecios() {
 
         JasperReport reporte = null;
-        String path = "C:\\Program Files\\SYCO\\Reportes\\Rep_ListadodepreciosMiguelinaLuciano.jasper";
+        String path = "C:\\Program Files\\SYCO\\Reportes\\Rep_ListadodepreciosImpresosNathalia.jasper";
         //String path = "C:\\Reportes\\CotizacionMiguelinaLuciano.jasper";
 
         try {

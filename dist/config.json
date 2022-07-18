@@ -1,0 +1,5 @@
+{
+    "url":"jdbc:mysql://localhost:3306/scoa?user=minty&password=greatsqldb",
+    "username":"root",
+    "password":"root"  
+}

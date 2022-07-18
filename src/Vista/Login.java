@@ -43,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 204, 204));
         setIconImage(getIconImage());
 
-        jPanel1.setBackground(new java.awt.Color(224, 224, 224));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbSAC.setBackground(new java.awt.Color(204, 204, 204));
@@ -59,8 +59,8 @@ public class Login extends javax.swing.JFrame {
         lbUsuario.setText("Usuario:");
         jPanel1.add(lbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 40));
 
-        tfUsuario.setBackground(new java.awt.Color(235, 235, 235));
-        tfUsuario.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        tfUsuario.setBackground(new java.awt.Color(214, 214, 214));
+        tfUsuario.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         tfUsuario.setBorder(null);
         tfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -74,8 +74,8 @@ public class Login extends javax.swing.JFrame {
         lbContrasena.setText("Contraseña:");
         jPanel1.add(lbContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 150, 40));
 
-        pfContrasena.setBackground(new java.awt.Color(235, 235, 235));
-        pfContrasena.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        pfContrasena.setBackground(new java.awt.Color(214, 214, 214));
+        pfContrasena.setFont(new java.awt.Font("Roboto Light", 0, 22)); // NOI18N
         pfContrasena.setBorder(null);
         pfContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -84,7 +84,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(pfContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 200, 40));
 
-        btIngresar.setFont(new java.awt.Font("Roboto Light", 1, 24)); // NOI18N
+        btIngresar.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         btIngresar.setForeground(new java.awt.Color(118, 113, 113));
         btIngresar.setText("Ingresar");
         btIngresar.setBorder(null);

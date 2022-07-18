@@ -77,9 +77,10 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         jDPprincipal.setOpaque(false);
 
-        lbUsuario.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
+        lbUsuario.setBackground(new java.awt.Color(245, 245, 245));
+        lbUsuario.setFont(new java.awt.Font("Roboto Medium", 0, 22)); // NOI18N
         lbUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        lbUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(187, 187, 187)));
         lbUsuario.setOpaque(true);
 
         jDPprincipal.setLayer(lbUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -88,16 +89,16 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         jDPprincipal.setLayout(jDPprincipalLayout);
         jDPprincipalLayout.setHorizontalGroup(
             jDPprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDPprincipalLayout.createSequentialGroup()
-                .addContainerGap(436, Short.MAX_VALUE)
-                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDPprincipalLayout.createSequentialGroup()
+                .addContainerGap(370, Short.MAX_VALUE)
+                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jDPprincipalLayout.setVerticalGroup(
             jDPprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDPprincipalLayout.createSequentialGroup()
-                .addContainerGap(321, Short.MAX_VALUE)
-                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(304, Short.MAX_VALUE)
+                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

@@ -24,7 +24,7 @@ public class MiRenderer extends DefaultTableCellRenderer {
         Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         comp.setBackground(background);
         comp.setForeground(foreground);
-        comp.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 17));
+        comp.setFont(new java.awt.Font("Roboto", 3, 20));
         this.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
         return comp;
