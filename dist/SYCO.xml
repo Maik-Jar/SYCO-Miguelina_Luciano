@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>C:\Users\DELL\OneDrive\Documents\MEGAsync\NetBeansProjects\Impresos Nathalia\dist\SYCO-ImpresosNathalia.jar</jar>
-  <outfile>syco.exe</outfile>
+  <outfile>SYCO.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>

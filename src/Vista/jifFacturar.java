@@ -1283,30 +1283,49 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                 calculos[1] = Double.parseDouble(dtmtbFacturacion.getValueAt(fila, 4).toString()); // Columna "Cantidad". 
                 calculos[2] = Double.parseDouble(dtmtbFacturacion.getValueAt(fila, 6).toString())/100; // Columna "Descto".
                 calculos[3] = (calculos[0] * calculos[1]); // Calcula precio por la cantidad.
-                calculos[5] = calculos[3] - (calculos[3]*calculos[2]); // calcula precion con descuento.
+                calculos[5] = calculos[3] - (calculos[3]*calculos[2]); // calcula precio con descuento.
                 
                 if ("Si".equals(itbis)) {
-                    calculos[4] = Double.parseDouble(calculos[5].toString()) * ITBIS; // Calcula el ITBIS
-                    dtmtbFacturacion.setValueAt(calculos[3], fila, 5); // Precio.
-                    dtmtbFacturacion.setValueAt(calculos[4], fila, 7); // ITBIS.
-                    dtmtbFacturacion.setValueAt((calculos[5] + calculos[4]), fila, 8); // Monto.
+                    
+                    
+                    
+                    //calculos[4] = Double.parseDouble(calculos[5].toString()) * ITBIS; // Calcula el ITBIS
+                    
+                    
+                    //dtmtbFacturacion.setValueAt(calculos[3], fila, 5); // Precio.
+                    
+                    // Pasa el precio por cantidad calculado.
+                    dtmtbFacturacion.setValueAt(calculaPrecio(calculos[0],
+                                                              (int) dtmtbFacturacion.getValueAt(fila, 4)),
+                                                fila, 5);
+                    
+                    // Pasa el itbis calculado.
+                    dtmtbFacturacion.setValueAt(calculaItbis((double) dtmtbFacturacion.getValueAt(fila, 5),
+                                                            (double) dtmtbFacturacion.getValueAt(fila, 6)),
+                                                fila, 7);
+                    
+                    //dtmtbFacturacion.setValueAt((calculos[5] + calculos[4]), fila, 8); // Monto.
+                    // Pasa el monto calculado.
+                    dtmtbFacturacion.setValueAt(calculaMonto((double) dtmtbFacturacion.getValueAt(fila, 5),
+                                                             (double) dtmtbFacturacion.getValueAt(fila, 7),
+                                                             calculaDescuento((double) dtmtbFacturacion.getValueAt(fila, 5),
+                                                                              (double) dtmtbFacturacion.getValueAt(fila, 6))),
+                                                fila, 8);
                 } else {
                     calculos[4] = Double.parseDouble("0.00"); // ITBIS
                     dtmtbFacturacion.setValueAt(calculos[3], fila, 5); // Precio.
                     dtmtbFacturacion.setValueAt(calculos[5], fila, 8); // Monto.
                 }
-
-                dtmtbFacturacion.fireTableDataChanged(); // Ejecuta el cambio.
-
-                CalcularTotal();
+                
+          
+                // Ejecuta el cambio.
+                dtmtbFacturacion.fireTableDataChanged(); 
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "BASE DE DATOS", JOptionPane.ERROR_MESSAGE);
             }
 
-        }
-
-        if (columna == 6) { // Columna Descuento
+        } else if (columna == 6) { // Columna Descuento
             if (dtmtbFacturacion.getValueAt(fila, 6) == null) { // Evalua si la columna "Descuento" esta vacia.
                 dtmtbFacturacion.setValueAt(0.00, fila, 6); // Si la columna "Descuento" esta vacia, asigna un valor de 0.0.
                 dtmtbFacturacion.fireTableDataChanged(); // Ejecuta el cambio.
@@ -1330,8 +1349,22 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
             dtmtbFacturacion.fireTableDataChanged(); // Ejecuta el cambio.
 
-            CalcularTotal();
+            
+        } else if (columna == 3){
+            if (dtmtbFacturacion.getValueAt(fila, 3) == null || Integer.parseInt(dtmtbFacturacion.getValueAt(fila, 3).toString()) == 0) { // Columna "Cantidad".
+                dtmtbFacturacion.setValueAt(1.00, fila, 3); // Si la columna "Cantidad" esta vacia, asigna un valor de 1.
+                dtmtbFacturacion.fireTableDataChanged(); // Ejecuta el cambio.
+            }
+            
+            Double[] precio = new Double[3];
+            
+            precio[0] = Double.parseDouble(dtmtbFacturacion.getValueAt(fila, 4).toString()); // Columna cantidad
+            precio[1] = Double.parseDouble(dtmtbFacturacion.getValueAt(fila, 3).toString()); // Columna precio
+            precio[2] = precio[1] * precio[0];
+            
         }
+        
+        CalcularTotal();
     }//GEN-LAST:event_tbFacturacionKeyPressed
 
     private void tbFacturacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFacturacionMouseClicked
@@ -1829,6 +1862,46 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "BASE DE DATOS", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+    
+    private double calculaItbis(double precioCantidad, double descuento){
+        
+        final double itbis = 0.18;
+        double monto = 0.00;
+        double montoItbis = 0.00;
+        
+        monto = precioCantidad - (precioCantidad * (descuento/100));
+        
+        montoItbis = monto * itbis;
+        
+        return montoItbis;
+    }
+    
+    private double calculaDescuento(double precioCantidad, double descuento){
+        
+        double montoDescuento = 0.00;
+        
+        montoDescuento = precioCantidad * (descuento/100);
+        
+        return montoDescuento;
+    }
+    
+    private double calculaPrecio(double precioUnd, int cantidad){
+        
+        double precioCantidad = 0.00;
+        
+        precioCantidad = precioUnd * cantidad;
+        
+        return precioCantidad;
+    }
+    
+     private double calculaMonto(double precioCantidad, double itbis, double descuento){
+        
+        double monto = 0.00;
+        
+        monto = (precioCantidad - descuento) + itbis;
+        
+        return monto;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
