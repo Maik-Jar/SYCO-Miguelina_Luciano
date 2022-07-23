@@ -20,6 +20,7 @@ public class Cliente {
     private String email;
 
     // <editor-fold defaultstate="collapsed" desc="CONSTRUCTOR">
+    // Para cuando se cree un nuevo cliente de tipo empresa.
     public Cliente(String tipoCliente, String noDocumento, String tipoDocumento, String razonSocial, String telefono, String email) {
         this.tipoCliente = tipoCliente;
         this.noDocumento = noDocumento;
@@ -28,7 +29,7 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
     }
-
+    // Para cuando se cree un nuevo cliente de tipo persona.
     public Cliente(String tipoCliente, String noDocumento, String tipoDocumento, String primerNombre, String segundoNombre, String apellidos, String telefono, String email) {
         this.tipoCliente = tipoCliente;
         this.noDocumento = noDocumento;
@@ -39,7 +40,7 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
     }
-
+    // Para cuando se busque un cliente de tipo empresa.
     public Cliente(int id, String codigo, String tipoCliente, String noDocumento, String tipoDocumento, String razonSocial, String telefono, String email) {
         this.id = id;
         this.codigo = codigo;
@@ -50,7 +51,7 @@ public class Cliente {
         this.telefono = telefono;
         this.email = email;
     }
-
+    // Para cuando se busque un cliente de tipo persona.
     public Cliente(int id, String codigo, String tipoCliente, String noDocumento, String tipoDocumento, String primerNombre, String segundoNombre, String apellidos, String telefono, String email) {
         this.id = id;
         this.codigo = codigo;

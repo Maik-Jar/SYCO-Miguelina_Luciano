@@ -8,40 +8,52 @@ package Modelo;
 public class DetalleFactura {
     
     private int id;
-    private int noFactura;
-    private String tipoItem; // Servicio o Producto
+    private String noFactura;
+    private String tipoItem; // Servicio o Producto / asignacion automatica.
     private Producto producto; // codigo, descripcion, precioUnd, impuesto(si lleva o no)
     private Servicio servicio; // codigo, detalle, precio, impuesto(si lleva o no)
-    private int cantidad;
-    private double impuesto; // Calulo interno
-    private double descuento; 
-    private double monto; // Calculo interno
-    private double precio; // Calculo interno
+    private String codigoItem; // asignacion automatica
+    private String descripcionItem; // asignacion automatica
+    private double precioUnitario = 0.00; // asignacion automatica
+    private int cantidad = 1;
+    private double impuesto = 0.00; // Calulo interno
+    private double porcentajeDescuento = 0.00; 
+    private double monto = 0.00; // Calculo interno
+    private double precio = 0.00; // Calculo interno
+    private double montoDescuento = 0.00; // Calculo interno
 
     // <editor-fold defaultstate="collapsed" desc="CONSTRUCTOR">
     // Para cuando se vaya agregar un nuevo detalle a la factura y sea un producto.
-    public DetalleFactura(int id, int noFactura, String tipoItem, Producto producto, int cantidad, double descuento) {
+    public DetalleFactura(int id, String noFactura, Producto producto, int cantidad, double descuento) {
         this.id = id;
         this.noFactura = noFactura;
-        this.tipoItem = tipoItem;
+        this.tipoItem = "producto";
         this.producto = producto;
         this.cantidad = cantidad;
-        this.descuento = descuento;
+        this.porcentajeDescuento = descuento;
+        this.codigoItem = producto.getCodigo();
+        this.descripcionItem = producto.getDescripcion();
+        this.precioUnitario = producto.getPrecio();
         
         calculaPreio();
+        calculaDescuento();
         calculaImpuesto();
         calculaMonto();
     }
     // Para cuando se vaya agregar un nuevo detalle a la factura y sea un servicio.
-    public DetalleFactura(int id, int noFactura, String tipoItem, Servicio servicio, int cantidad, double descuento) {
+    public DetalleFactura(int id, String noFactura, Servicio servicio, int cantidad, double descuento) {
         this.id = id;
         this.noFactura = noFactura;
-        this.tipoItem = tipoItem;
+        this.tipoItem = "servicio";
         this.servicio = servicio;
         this.cantidad = cantidad;
-        this.descuento = descuento;
+        this.porcentajeDescuento = descuento;
+        this.codigoItem = servicio.getCodigo();
+        this.descripcionItem = servicio.getDetalle();
+        this.precioUnitario = servicio.getPrecio();
         
         calculaPreio();
+        calculaDescuento();
         calculaImpuesto();
         calculaMonto();
     }
@@ -51,14 +63,16 @@ public class DetalleFactura {
     public void setId(int id) {
         this.id = id;
     }
-
-    public void setNoFactura(int noFactura) {
+    
+    /*
+    public void setNoFactura(String noFactura) {
         this.noFactura = noFactura;
     }
 
     public void setTipoItem(String tipoItem) {
         this.tipoItem = tipoItem;
     }
+    */
 
     public void setProducto(Producto producto) {
         this.producto = producto;
@@ -72,14 +86,16 @@ public class DetalleFactura {
         this.cantidad = cantidad;
         
         calculaPreio();
+        calculaDescuento();
         calculaImpuesto();
         calculaMonto();
     }
 
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
+    public void setPorcentajeDescuento(double porcentajeDescuento) {
+        this.porcentajeDescuento = porcentajeDescuento;
         
         calculaPreio();
+        calculaDescuento();
         calculaImpuesto();
         calculaMonto();
     }
@@ -91,7 +107,7 @@ public class DetalleFactura {
         return id;
     }
 
-    public int getNoFactura() {
+    public String getNoFactura() {
         return noFactura;
     }
 
@@ -115,8 +131,8 @@ public class DetalleFactura {
         return impuesto;
     }
 
-    public double getDescuento() {
-        return descuento;
+    public double getPorcentajeDescuento() {
+        return porcentajeDescuento;
     }
 
     public double getMonto() {
@@ -126,30 +142,33 @@ public class DetalleFactura {
     public double getPrecio() {
         return precio;
     }
+    
+    public double getMontoDescuento() {
+        return montoDescuento;
+    }
+    
+    public String getCodigo() {
+        return codigoItem;
+    }
+    
+    public String getDescripcion() {
+        return descripcionItem;
+    }
+    
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="METODOS">
     private void calculaPreio() {
         
-        double montoDescuento = calculaDescuento();
-        double precioXcantidad = 0.00;
-        
-        if (tipoItem.equalsIgnoreCase("Servicio")) { // Se valida si es un servicio o producto
-            precioXcantidad = servicio.getPrecio() * cantidad;
-        }else {
-            precioXcantidad = producto.getPrecio() * cantidad;
-        }
-        
-        this.precio = precioXcantidad - montoDescuento;
+        this.precio = precioUnitario * cantidad;
     }
     
-    private double calculaDescuento() {
+    private void calculaDescuento() {
         
-        double montodescuento = 0.00;
-        
-        montodescuento = precio * (descuento/100);
-        
-        return montodescuento;
+        this.montoDescuento = precio * (porcentajeDescuento/100);
     }
     
     private void calculaImpuesto() {
@@ -162,13 +181,13 @@ public class DetalleFactura {
                 impuestos += imp.getPorcentaje();
             }
             
-            montoImpuesto = precio * impuestos;
+            montoImpuesto = (precio-montoDescuento) * impuestos;
         }else {
             for (Impuesto imp : producto.getImpuesto()) {
                 impuestos += imp.getPorcentaje();
             }
             
-            montoImpuesto = precio * impuestos;
+            montoImpuesto = (precio-montoDescuento) * impuestos;
         }
         
         this.impuesto = montoImpuesto;
@@ -178,7 +197,7 @@ public class DetalleFactura {
         
         double total = 0.00;
         
-        total = precio + impuesto;
+        total = (precio-montoDescuento)+ impuesto;
         
         this.monto = total;
     }

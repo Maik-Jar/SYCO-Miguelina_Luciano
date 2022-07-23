@@ -19,14 +19,21 @@ public class Factura {
     private List<DetalleFactura> detalleFactura;
     private String tipoVenta;
     private String modoPago;
-    private double subtotal = 0.00;
-    private double totalDescuento = 0.00;
-    private double totalImpuesto = 0.00;
-    private double montoTotal = 0.00;
+    private double subtotal = 0.00; // Calculo interno
+    private double totalDescuento = 0.00; // Calculo interno
+    private double totalImpuesto = 0.00; // Calculo interno
+    private double montoTotal = 0.00; // Calculo interno
     private double pagado = 0.00;
     private String comentario;
+    private boolean estatus = true;
+    private Usuario usuario;
 
     // <editor-fold defaultstate="collapsed" desc="CONSTRUCTOR">
+    // Para cuando se vaya a crear una nueva factura.
+    public Factura(Usuario usuario){
+        this.usuario = usuario;
+    }
+    /*
     // Para cuando se vaya a crear una nueva factura sin comprobante.
     public Factura(String tipoFactura, Cliente cliente) {
         this.tipoFactura = tipoFactura;
@@ -39,8 +46,9 @@ public class Factura {
         this.vencimientoNFC = vencimientoNFC;
         this.cliente = cliente;
     }
+    */
     // Para cuando se este buscando una factura sin comprobante.
-    public Factura(int id, String noFactura, String tipoFactura, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario) {
+    public Factura(int id, String noFactura, String tipoFactura, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
         this.id = id;
         this.noFactura = noFactura;
         this.tipoFactura = tipoFactura;
@@ -50,9 +58,16 @@ public class Factura {
         this.tipoVenta = tipoVenta;
         this.modoPago = modoPago;
         this.comentario = comentario;
+        this.estatus = estatus;
+        this.usuario = usuario;
+        
+        calculaSubtotal();
+        calculaTotalDescuento();
+        calculaTotalImpuesto();
+        calculaMontoTotal();
     }
     // Para cuando se este buscando una factura con comprobante.
-    public Factura(int id, String noFactura, String tipoFactura, String nfc, String vencimientoNFC, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario) {
+    public Factura(int id, String noFactura, String tipoFactura, String nfc, String vencimientoNFC, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
         this.id = id;
         this.noFactura = noFactura;
         this.tipoFactura = tipoFactura;
@@ -64,6 +79,13 @@ public class Factura {
         this.tipoVenta = tipoVenta;
         this.modoPago = modoPago;
         this.comentario = comentario;
+        this.estatus = estatus;
+        this.usuario = usuario;
+        
+        calculaSubtotal();
+        calculaTotalDescuento();
+        calculaTotalImpuesto();
+        calculaMontoTotal();
     }
     // </editor-fold>
     
@@ -94,6 +116,11 @@ public class Factura {
 
     public void setDetalleFactura(DetalleFactura detalleFactura) {
         this.detalleFactura.add(detalleFactura);
+        
+        calculaSubtotal();
+        calculaTotalDescuento();
+        calculaTotalImpuesto();
+        calculaMontoTotal();
     }
 
     public void setTipoVenta(String tipoVenta) {
@@ -107,7 +134,7 @@ public class Factura {
     /*
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
-    }*/
+    }
 
     public void setTotalDescuento(double totalDescuento) {
         this.totalDescuento = totalDescuento;
@@ -120,13 +147,21 @@ public class Factura {
     public void setMontoTotal(double montoTotal) {
         this.montoTotal = montoTotal;
     }
-
+    */
     public void setPagado(double pagado) {
         this.pagado = pagado;
     }
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    public void setEstatus (boolean estatus) {
+        this.estatus = estatus;
+    }
+    
+    public void setUsuario (Usuario usuario) {
+        this.usuario = usuario;
     }
     
     // </editor-fold>
@@ -198,33 +233,52 @@ public class Factura {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="METODOS"> 
-    private void calculaSubtotal(List<DetalleFactura> detalleFactura){
+    private void calculaSubtotal(){
         
         double monto = 0.00;
         
         for (DetalleFactura item : detalleFactura) {
             
-            if (item.getTipoItem().equalsIgnoreCase("Servicio")) {
-                monto += item.getServicio().getPrecio();
-            } else {
-                monto += item.getProducto().getPrecio();
-            }
-           
+            monto += item.getPrecio();
+            
         }
         
         this.subtotal = monto;
     }
     
-    private void calculaTotalDescuento(List<DetalleFactura> detalleFactura){
+    private void calculaTotalDescuento(){
         
         double monto = 0.00;
         
         for (DetalleFactura item : detalleFactura) {
-            monto += item.getDescuento();
+            monto += item.getMontoDescuento();
         }
         
         this.totalDescuento = monto;
     }
     
+    private void calculaTotalImpuesto () {
+        
+        double monto = 0.00;
+        
+        for (DetalleFactura item : detalleFactura) {
+            monto += item.getImpuesto();
+        }
+        
+        this.totalImpuesto = monto;
+    }
+    
+    private void calculaMontoTotal () {
+        
+        double monto = 0.00;
+        
+        monto = (subtotal - totalDescuento) + totalImpuesto;
+        
+        this.montoTotal = monto;
+    }
+    
+    public void agregarItem(String codigoItem){
+        
+    }
     // </editor-fold>
 }
