@@ -99,8 +99,8 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public void setImpuesto(List<Impuesto> impuesto) {
-        this.impuesto = impuesto;
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto.add(impuesto);
     }
 
     public void setEstatus(boolean estatus) {

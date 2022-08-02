@@ -3,6 +3,8 @@ package Modelo;
 import java.awt.Dialog;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
@@ -90,6 +92,32 @@ public class Reportes {
             
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
+
+            JasperViewer view = new JasperViewer(jprint, false);
+            view.setVisible(true);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Reporte", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void Factura80mm(int nofactura) {
+
+        JasperReport reporte = null;
+        String path = "C:\\Program Files\\SYCO\\Reportes\\factura80mm.jasper";
+        //String path = "C:\\Reportes\\CotizacionMiguelinaLuciano.jasper";
+        
+        Map<String, Object> parametro = new HashMap<>();
+        
+        parametro.put("pnofactura", nofactura);
+        
+        try {
+            //Consulta a la base de datos.
+            Connection conn = con.getConnection();
+            
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
 
             JasperViewer view = new JasperViewer(jprint, false);
             view.setVisible(true);

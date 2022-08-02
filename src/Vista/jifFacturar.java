@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.Cotizacion;
 import Modelo.FacturaSCOA;
@@ -9,6 +10,7 @@ import Modelo.MiRenderer;
 import Modelo.Reportes;
 import Modelo.Usuario;
 import Modelo.Validacion;
+import Modelo.Factura;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +47,8 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
     ResultSet rs;
     Usuario usr;
     
+    Cliente cliente;
+    Factura factura;
     Conexion con = new Conexion();
     Validacion valida = new Validacion();
     Reportes reporte = new Reportes();
@@ -123,6 +127,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         NumeroFactura();
         Buscar_NFC();
         this.usr = usr;
+        factura = new Factura(usr); // Se inicia a crear nueva factura, se pasa el usuario.
     }
   
     
@@ -694,7 +699,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jplContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -823,7 +828,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btAgregarActionPerformed
 
     private void tfCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyPressed
-    
+        
         if (evt.VK_ENTER == evt.getKeyCode() && (tfCodigo.getText().trim().isEmpty())) {
             jdProductos.setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos/productos.png")).getImage());
             jdProductos.setSize(630, 340);
@@ -915,9 +920,9 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
         String currentTime = dateFormat.format(now);
         
         int eleccion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea realizar esta facturación?", "PRECAUCIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+        
         if (eleccion == 0) {
-
+            
             if (tfCliente.getText().trim().isEmpty() == true) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar el cliente al que se hará la venta.", "INFORMACIÓN", JOptionPane.WARNING_MESSAGE);
             } else if (dtmtbFacturacion.getRowCount() == 0) {
@@ -999,7 +1004,14 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
                         //Cierre de conexión a la base de datos.
                         conn.close();
-
+                        
+                        if (cbComprobante.getSelectedIndex() == 1) {
+                            
+                            reporte.Factura80mm(Integer.parseInt(tfNofactura.getText()));
+                            NumeroFactura();
+                            Buscar_NFC();
+                        } else {
+                        
                         if (cbComprobante.getSelectedIndex() != 1) { // comprobante diferente a "consumo".
                             for (int i = 0; i < tbFacturacion.getRowCount(); i++) {
                                 facturascoa = new FacturaSCOA(lbTipodefactura.getText() // n_comprobante
@@ -1059,7 +1071,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                                 coleccion.add(facturascoa);
                             }
                         }
-
+                        }
                         dtmtbFacturacion.setRowCount(0);
                         cbDocumento.setSelectedIndex(0);
                         tfCliente.setText(null);
@@ -1080,6 +1092,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                         System.out.println(e);
                     }
                     reporte.Factura(coleccion);
+                    //reporte.Factura80mm(Integer.parseInt(tfNofactura.getText()));
                     NumeroFactura();
                     Buscar_NFC();
                 }
@@ -1157,6 +1170,12 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                     //Cierre de conexión a la base de datos.
                     conn.close();
 
+                    if (cbComprobante.getSelectedIndex() == 1) {
+                            
+                            reporte.Factura80mm(Integer.parseInt(tfNofactura.getText()));
+                            NumeroFactura();
+                            Buscar_NFC();
+                    } else {
                     if (cbComprobante.getSelectedIndex() != 1) { // comprobante diferente a "consumo".
                         for (int i = 0; i < tbFacturacion.getRowCount(); i++) {
                             facturascoa = new FacturaSCOA(lbTipodefactura.getText() // n_comprobante
@@ -1216,7 +1235,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                             coleccion.add(facturascoa);
                         }
                     }
-
+                    }
                     dtmtbFacturacion.setRowCount(0);
                     cbDocumento.setSelectedIndex(0);
                     tfCliente.setText(null);
@@ -1237,6 +1256,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
                     System.out.println(e);
                 }
                 reporte.Factura(coleccion);
+                //reporte.Factura80mm(Integer.parseInt(tfNofactura.getText()));
                 NumeroFactura();
                 Buscar_NFC();
             }
@@ -1508,6 +1528,7 @@ public final class jifFacturar extends javax.swing.JInternalFrame {
 
             // Recorrido de datos para obtencion de los resultados de la consulta.
             if (rs.next()) {
+                
                 cbDocumento.setSelectedItem(rs.getString(6)); // Tipo de documento.
                 tfCodcliente.setText(rs.getString(1)); // Código de cliente.
                 tfBusqueda.setText(rs.getString(2)); // No. de documento.

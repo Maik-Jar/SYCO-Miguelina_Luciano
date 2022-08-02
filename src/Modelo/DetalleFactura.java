@@ -49,7 +49,7 @@ public class DetalleFactura {
         this.cantidad = cantidad;
         this.porcentajeDescuento = descuento;
         this.codigoItem = servicio.getCodigo();
-        this.descripcionItem = servicio.getDetalle();
+        this.descripcionItem = servicio.getDescripcion();
         this.precioUnitario = servicio.getPrecio();
         
         calculaPreio();

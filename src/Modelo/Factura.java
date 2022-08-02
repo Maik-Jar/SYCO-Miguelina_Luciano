@@ -11,11 +11,13 @@ public class Factura {
     
     private int id;
     private String noFactura;
+    /*
     private String tipoFactura;
-    private String nfc;
-    private String vencimientoNFC;
+    private String nfc;              Hacer una nueva clase con estos tres atributos ya que muy posible se haya que hacer algunos
+    private String vencimientoNFC;   procesos para construir el NCF
+    */
     private String fechaHora;
-    private Cliente cliente;
+    private int codigoCliente;
     private List<DetalleFactura> detalleFactura;
     private String tipoVenta;
     private String modoPago;
@@ -48,12 +50,12 @@ public class Factura {
     }
     */
     // Para cuando se este buscando una factura sin comprobante.
-    public Factura(int id, String noFactura, String tipoFactura, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
+    public Factura(int id, String noFactura, String tipoFactura, String fechaHora, int codigoCliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
         this.id = id;
         this.noFactura = noFactura;
-        this.tipoFactura = tipoFactura;
+        //this.tipoFactura = tipoFactura;
         this.fechaHora = fechaHora;
-        this.cliente = cliente;
+        this.codigoCliente = codigoCliente;
         this.detalleFactura = detalleFactura;
         this.tipoVenta = tipoVenta;
         this.modoPago = modoPago;
@@ -67,14 +69,16 @@ public class Factura {
         calculaMontoTotal();
     }
     // Para cuando se este buscando una factura con comprobante.
-    public Factura(int id, String noFactura, String tipoFactura, String nfc, String vencimientoNFC, String fechaHora, Cliente cliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
+    public Factura(int id, String noFactura, String tipoFactura, String nfc, String vencimientoNFC, String fechaHora, int codigoCliente, List<DetalleFactura> detalleFactura, String tipoVenta, String modoPago, String comentario, boolean estatus, Usuario usuario) {
         this.id = id;
         this.noFactura = noFactura;
+        /*
         this.tipoFactura = tipoFactura;
         this.nfc = nfc;
         this.vencimientoNFC = vencimientoNFC;
+        */
         this.fechaHora = fechaHora;
-        this.cliente = cliente;
+        this.codigoCliente = codigoCliente;
         this.detalleFactura = detalleFactura;
         this.tipoVenta = tipoVenta;
         this.modoPago = modoPago;
@@ -93,7 +97,7 @@ public class Factura {
     public void setNoFactura(String noFactura) {
         this.noFactura = noFactura;
     }
-
+    /*
     public void setTipoFactura(String tipoFactura) {
         this.tipoFactura = tipoFactura;
     }
@@ -105,13 +109,13 @@ public class Factura {
     public void setVencimientoNFC(String vencimientoNFC) {
         this.vencimientoNFC = vencimientoNFC;
     }
-
+    */
     public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     public void setDetalleFactura(DetalleFactura detalleFactura) {
@@ -170,7 +174,7 @@ public class Factura {
     public String getNoFactura() {
         return noFactura;
     }
-
+    /*
     public String getTipoFactura() {
         return tipoFactura;
     }
@@ -182,13 +186,13 @@ public class Factura {
     public String getVencimientoNFC() {
         return vencimientoNFC;
     }
-
+    */
     public String getFechaHora() {
         return fechaHora;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getCliente() {
+        return codigoCliente;
     }
 
     public List<DetalleFactura> getDetalleFactura() {
