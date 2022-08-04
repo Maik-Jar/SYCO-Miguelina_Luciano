@@ -1,7 +1,12 @@
 
 package Modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,24 +15,27 @@ import java.util.List;
 public class Servicio {
     
     private int id;
-    private String codigo;
+    private int codigo;
     private String descripcion;
     private String detalle;
     private double precio;
     private List<Impuesto> impuesto;
     private boolean estatus;
+    
+    private Conexion con;
+    private ResultSet rs;
+    private PreparedStatement ps;
 
     // <editor-fold defaultstate="collapsed" desc="CONSTRUCTOR">
     // Para cuando se cree un nuevo producto
-    public Servicio(String descripcion, String detalle, double precio, List<Impuesto> impuesto, boolean estatus) {
+    public Servicio(String descripcion, double precio, List<Impuesto> impuesto, boolean estatus) {
         this.descripcion = descripcion;
-        this.detalle = detalle;
         this.precio = precio;
         this.impuesto = impuesto;
         this.estatus = estatus;
     }
     // Para cuando se busque un servicio existente
-    public Servicio(int id, String codigo, String descripcion, String detalle, double precio, List<Impuesto> impuesto, boolean estatus) {
+    public Servicio(int id, int codigo, String descripcion, String detalle, double precio, List<Impuesto> impuesto, boolean estatus) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -43,7 +51,7 @@ public class Servicio {
         return id;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
@@ -65,14 +73,6 @@ public class Servicio {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="SETTERS">
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -90,4 +90,108 @@ public class Servicio {
     }
     // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="METODOS">
+    public void crear(){
+        
+    }
+    
+    public void modificar(){
+        
+    }
+    
+    private void agregarImpuesto()throws SQLException {
+
+        // Conexion a la base de datos.
+        Connection conn = con.getConnection();
+
+        try {
+            
+            
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "BASE DE DATOS", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            conn.close();
+        }
+    }
+    
+    private void eliminarImpuesto(){
+        
+    }
+    
+    private void conexionDB(String accion) throws SQLException {
+
+        // Conexion a la base de datos.
+        Connection conn = con.getConnection();
+
+        try {
+
+            if (accion.equalsIgnoreCase("crear")) {
+                
+                conn.setAutoCommit(false);
+                
+                // Consulta a la base de datos.
+                ps = conn.prepareCall("{call sp_servicio_crear(?,?,?)}");
+
+                // Parametros de consulta.
+                ps.setString(1, descripcion); // descripcion del servicio.
+                ps.setDouble(2, precio); // precio del servicio.
+                ps.setBoolean(3, estatus); // estatus del servicio.
+
+                rs = ps.executeQuery();
+                
+                this.codigo = rs.getInt(detalle);
+                    
+                for (Impuesto imp : this.impuesto) {
+                    // Consulta a la base de datos.
+                    ps = conn.prepareCall("{call sp_servicio_agregarimpuesto(?,?)}");
+
+                    // Parametros de consulta.
+                    ps.setInt(1, codigo); // codigo del servicio.
+                    ps.setInt(2, imp.getId()); // id del impuesto.
+
+                    rs = ps.executeQuery();
+                }
+                
+                conn.commit();
+
+                JOptionPane.showMessageDialog(null, "¡Nuevo servicio creado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+
+            } else if (accion.equalsIgnoreCase("modificar")) {
+
+                // Consulta a la base de datos.
+                ps = conn.prepareCall("{call sp_modificar_impuesto(?,?,?,?,?)}");
+
+                // Parametros de consulta.
+                ps.setInt(1, id); // id del impuesto.
+                ps.setString(2, nombre); // nombre del impuesto ej. ITBIS
+                ps.setString(3, detalle); // detalle del impuesto.
+                ps.setDouble(4, porcentaje); // porcentaje del impuesto ej. 0.18
+                ps.setBoolean(5, estatus); // estatus del impuesto.
+
+                rs = ps.executeQuery();
+
+                JOptionPane.showMessageDialog(null, "¡Impuesto modificado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+
+            } else if (accion.equalsIgnoreCase("eliminar")) {
+
+                // Consulta a la base de datos.
+                ps = conn.prepareCall("{call sp_eliminar_impuesto(?)}");
+
+                // Parametros de consulta.
+                ps.setInt(1, id); // id del impuesto.
+
+                rs = ps.executeQuery();
+
+                JOptionPane.showMessageDialog(null, "¡Impuesto eliminado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (SQLException e) {
+            conn.rollback();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "BASE DE DATOS", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            conn.close();
+        }
+    }
+    // </editor-fold>
 }

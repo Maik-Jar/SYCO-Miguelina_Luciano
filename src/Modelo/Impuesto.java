@@ -93,7 +93,7 @@ public class Impuesto {
             if (accion.equalsIgnoreCase("crear")){
                 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_insertar_impuesto(?,?,?,?)}");
+                ps = conn.prepareCall("{call sp_impuesto_crear(?,?,?,?)}");
 
                 // Parametros de consulta.
                 ps.setString(1, nombre); // nombre del impuesto ej. ITBIS
@@ -108,7 +108,7 @@ public class Impuesto {
             } else if (accion.equalsIgnoreCase("modificar")){
                 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_modificar_impuesto(?,?,?,?,?)}");
+                ps = conn.prepareCall("{call sp_impuesto_modificar(?,?,?,?,?)}");
 
                 // Parametros de consulta.
                 ps.setInt(1, id); // id del impuesto.
@@ -124,7 +124,7 @@ public class Impuesto {
             } else if (accion.equalsIgnoreCase("eliminar")){
                 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_eliminar_impuesto(?)}");
+                ps = conn.prepareCall("{call sp_impuesto_eliminar(?)}");
 
                 // Parametros de consulta.
                 ps.setInt(1, id); // id del impuesto.
