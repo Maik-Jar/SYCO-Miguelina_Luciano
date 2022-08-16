@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -91,34 +92,34 @@ public class Servicio {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="METODOS">
-    public void crear(){
-        
+    public void crear() throws SQLException{
+        conexionDB("crear");
     }
     
-    public void modificar(){
+    public void modificar(double precio, boolean estatus, List<Impuesto> impuesto) throws SQLException{
         
+        this.precio = precio;
+        this.estatus = estatus;
+        this.impuesto = impuesto;
+        
+        conexionDB("modificar");
     }
-    
-    private void agregarImpuesto()throws SQLException {
+    /* Codigo comentado porque se usara en un futuro
+    private List<Impuesto> eliminarImpuesto(List<Impuesto> impuesto){
 
-        // Conexion a la base de datos.
-        Connection conn = con.getConnection();
-
-        try {
-            
-            
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "BASE DE DATOS", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            conn.close();
+        for (Impuesto i : this.impuesto) {
+            for (Impuesto j : impuesto) {
+                if (!(impuesto.isEmpty())) {
+                    if (i.getId() == j.getId()) {
+                        impuesto.remove(j);
+                    }
+                }
+            }
         }
-    }
-    
-    private void eliminarImpuesto(){
         
+        return impuesto;
     }
-    
+    */
     private void conexionDB(String accion) throws SQLException {
 
         // Conexion a la base de datos.
@@ -140,19 +141,23 @@ public class Servicio {
 
                 rs = ps.executeQuery();
                 
-                this.codigo = rs.getInt(detalle);
-                    
-                for (Impuesto imp : this.impuesto) {
-                    // Consulta a la base de datos.
-                    ps = conn.prepareCall("{call sp_servicio_agregarimpuesto(?,?)}");
-
-                    // Parametros de consulta.
-                    ps.setInt(1, codigo); // codigo del servicio.
-                    ps.setInt(2, imp.getId()); // id del impuesto.
-
-                    rs = ps.executeQuery();
-                }
+                this.codigo = rs.getInt("@ocodigo");
+                this.id = rs.getInt("@oid");
                 
+                if (!this.impuesto.isEmpty()) {
+
+                    for (Impuesto imp : this.impuesto) {
+                        // Consulta a la base de datos.
+                        ps = conn.prepareCall("{call sp_servicio_agregar_quitarimpuesto(?,?,?)}");
+
+                        // Parametros de consulta.
+                        ps.setInt(1, codigo); // codigo del servicio.
+                        ps.setInt(2, imp.getId()); // id del impuesto.
+                        ps.setBoolean(3, imp.isEstatus()); // estatus del impuesto. Esto para saber si el servicio lleva impuesto o no.
+
+                        ps.execute();
+                    }
+                }
                 conn.commit();
 
                 JOptionPane.showMessageDialog(null, "¡Nuevo servicio creado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
@@ -160,30 +165,35 @@ public class Servicio {
             } else if (accion.equalsIgnoreCase("modificar")) {
 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_modificar_impuesto(?,?,?,?,?)}");
+                ps = conn.prepareCall("{call sp_servicio_modificar(?,?,?,?)}");
 
                 // Parametros de consulta.
-                ps.setInt(1, id); // id del impuesto.
-                ps.setString(2, nombre); // nombre del impuesto ej. ITBIS
-                ps.setString(3, detalle); // detalle del impuesto.
-                ps.setDouble(4, porcentaje); // porcentaje del impuesto ej. 0.18
-                ps.setBoolean(5, estatus); // estatus del impuesto.
+                ps.setInt(1, id); // id del servicio.
+                ps.setString(2, descripcion); // descripcion del servicio.
+                ps.setDouble(3, precio); // precio del servicio.
+                ps.setBoolean(4, estatus); // estatus del impuesto.
 
-                rs = ps.executeQuery();
+                ps.executeUpdate();
+                
+                if (!this.impuesto.isEmpty()) {
 
-                JOptionPane.showMessageDialog(null, "¡Impuesto modificado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+                    for (Impuesto imp : this.impuesto) {
+                        // Consulta a la base de datos.
+                        ps = conn.prepareCall("{call sp_servicio_agregar_quitarimpuesto(?,?,?)}");
 
-            } else if (accion.equalsIgnoreCase("eliminar")) {
+                        // Parametros de consulta.
+                        ps.setInt(1, codigo); // codigo del servicio.
+                        ps.setInt(2, imp.getId()); // id del impuesto.
+                        ps.setBoolean(3, imp.isEstatus()); // estatus del impuesto. Esto para saber si el servicio lleva impuesto o no.
 
-                // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_eliminar_impuesto(?)}");
+                        ps.execute();
+                    }
+                }
+                
+                conn.commit();
+                
+                JOptionPane.showMessageDialog(null, "¡Servicio modificado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
-                // Parametros de consulta.
-                ps.setInt(1, id); // id del impuesto.
-
-                rs = ps.executeQuery();
-
-                JOptionPane.showMessageDialog(null, "¡Impuesto eliminado!", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException e) {
