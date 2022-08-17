@@ -6,13 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author DELL
- */
 public class Servicio {
     
     private int id;
@@ -71,24 +66,17 @@ public class Servicio {
     public boolean isEstatus() {
         return estatus;
     }
+    
+    public String getDetalle() {
+        return detalle;
+    }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="SETTERS">
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public void setImpuesto(Impuesto impuesto) {
-        this.impuesto.add(impuesto);
-    }
-
-    public void setEstatus(boolean estatus) {
-        this.estatus = estatus;
-    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="METODOS">
@@ -148,12 +136,12 @@ public class Servicio {
 
                     for (Impuesto imp : this.impuesto) {
                         // Consulta a la base de datos.
-                        ps = conn.prepareCall("{call sp_servicio_agregar_quitarimpuesto(?,?,?)}");
+                        ps = conn.prepareCall("{call sp_agregar_quitar_impuesto(?,?,?)}");
 
                         // Parametros de consulta.
-                        ps.setInt(1, codigo); // codigo del servicio.
+                        ps.setInt(1, codigo); // codigo del item.
                         ps.setInt(2, imp.getId()); // id del impuesto.
-                        ps.setBoolean(3, imp.isEstatus()); // estatus del impuesto. Esto para saber si el servicio lleva impuesto o no.
+                        ps.setBoolean(3, imp.isEstatus()); // estatus del impuesto. Esto para saber si el item lleva impuesto o no.
 
                         ps.execute();
                     }
@@ -179,7 +167,7 @@ public class Servicio {
 
                     for (Impuesto imp : this.impuesto) {
                         // Consulta a la base de datos.
-                        ps = conn.prepareCall("{call sp_servicio_agregar_quitarimpuesto(?,?,?)}");
+                        ps = conn.prepareCall("{call sp_agregar_quitar_impuesto(?,?,?)}");
 
                         // Parametros de consulta.
                         ps.setInt(1, codigo); // codigo del servicio.
