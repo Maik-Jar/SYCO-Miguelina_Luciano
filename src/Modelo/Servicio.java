@@ -84,8 +84,9 @@ public class Servicio {
         conexionDB("crear");
     }
     
-    public void modificar(double precio, boolean estatus, List<Impuesto> impuesto) throws SQLException{
+    public void modificar(String descripcion, double precio, boolean estatus, List<Impuesto> impuesto) throws SQLException{
         
+        this.descripcion = descripcion;
         this.precio = precio;
         this.estatus = estatus;
         this.impuesto = impuesto;

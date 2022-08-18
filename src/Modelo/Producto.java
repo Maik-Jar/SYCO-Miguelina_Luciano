@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+        
 public class Producto {
     
     private int id;
@@ -80,33 +81,23 @@ public class Producto {
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="SETTERS">
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public void setImpuesto(Impuesto impuesto) {
-        this.impuesto.add(impuesto);
-    }
-
-    public void setEstatus(boolean estatus) {
-        this.estatus = estatus;
-    }
-    // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="METODOS">
+    
+    public void crear() throws SQLException {
+        conexionDB("crear");
+    }
+    
+    public void modificar(String descripcion, double precio, int cantidad, Categoria categoria, List<Impuesto> impuesto, boolean estatus) throws SQLException {
+        
+         this.descripcion = descripcion;
+         this.precio = precio;
+         this.cantidad = cantidad;
+         this.categoria = categoria;
+         this.impuesto = impuesto;
+         this.estatus = estatus;
+         
+         conexionDB("modificar");
+    }
     
     private void conexionDB(String accion) throws SQLException {
 
@@ -120,7 +111,7 @@ public class Producto {
                 conn.setAutoCommit(false);
 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_producto_crear(?,?,?)}");
+                ps = conn.prepareCall("{call sp_producto_crear(?,?,?,?,?)}");
 
                 // Parametros de consulta.
                 ps.setString(1, descripcion); // descripcion del producto.
@@ -155,7 +146,7 @@ public class Producto {
             } else if (accion.equalsIgnoreCase("modificar")) {
 
                 // Consulta a la base de datos.
-                ps = conn.prepareCall("{call sp_producto_modificar(?,?,?,?)}");
+                ps = conn.prepareCall("{call sp_producto_modificar(?,?,?,?,?,?)}");
 
                 // Parametros de consulta.
                 ps.setInt(1, id); // id del producto.
